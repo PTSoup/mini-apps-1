@@ -12,6 +12,10 @@ var lastMove = null;
 
 //handles when a cell is clicked
 function clickHandler(event) {
+    if (moveCount === 9) {
+        alert('Game has ended!');
+        return null;
+    };
     if (event.type === 'click') {
         console.log('The cell was clicked!');
         console.log(event.target.id);
@@ -23,6 +27,7 @@ function clickHandler(event) {
 
 
 
+
 // for (var i = 0; i < square.length; i ++) {
 //     var cellNumber = square[i].id;
 //     square[i].addEventListener('click', eventHandler);
@@ -30,3 +35,4 @@ function clickHandler(event) {
 
 
 square.addEventListener('click', clickHandler);
+
