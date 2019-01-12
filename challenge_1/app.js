@@ -1,6 +1,8 @@
 console.log(`reading app.js`)
 
 const square = document.querySelector('table');
+const refresher = document.getElementById('refresh');
+
 
 //game elements
 var moveCount = 0;
@@ -23,7 +25,6 @@ var winningCombos = [
 
 
 //handles game functions
-
 var arraySorter = function(array) {
     array.sort(function(a,b) {
         return a - b;
@@ -38,20 +39,11 @@ var winCheck = function(player) {
         }
         return base;
     }, false);
-    // winningCombos.forEach(function(combo) {
-    //     if(JSON.stringify(player).includes(JSON.stringify(combo))) {
-    //         return true;
-    //     }
-    // });
 };
 
 //handles when a cell is clicked
-function clickHandler(event) {
- 
-
+var cellClickHandler = function(event) {
     if (event.type === 'click') {
-        // console.log('The cell was clicked!');
-        // console.log(event.target.id);
         if (gameEnd === true || moveCount === 9) {
             alert('Game has ended!');
             return;
@@ -80,29 +72,28 @@ function clickHandler(event) {
                     return;
                 } else if (moveCount === 9) {
                     document.getElementById('message').innerHTML=`Both y'all losers!`;
-                }
-                
-            }
-            
+                }   
+            }    
         }
-        
-
-
-        // (current === 'X') ? X.push(Number(cell)) : O.push(Number(cell));
-        // current = (current === 'X') ? 'O' : 'X';
-
     }
-
 };
 
+//handles when refresher is clicked
+var clickRefresh = function(event) {
+    
+    if (event.type === 'click') {
+        moveCount = 0;
+        X = [];
+        O = [];
+        gameEnd = false;
+        current = 'X';
+        document.getElementById('message').innerHTML='';
+        const gameboard = document.getElementsByClassName('cell');
+        for (var i = 0; i<gameboard.length; i++) {
+            gameboard[i].innerHTML = "";
+        }
+    }
+}
 
-
-
-// for (var i = 0; i < square.length; i ++) {
-//     var cellNumber = square[i].id;
-//     square[i].addEventListener('click', eventHandler);
-// }  
-
-
-square.addEventListener('click', clickHandler);
-
+square.addEventListener('click', cellClickHandler);
+refresher.addEventListener('click', clickRefresh);
