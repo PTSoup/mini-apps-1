@@ -20,10 +20,12 @@
 <body>
     <div id='container'>
         <div id='submissionBox'>
-            <form id='fileSub'>
-                <textarea></textarea>
+            <form method="POST" action='upload_json'>
+                <textarea id='json_object'></textarea>
+
+                <input type='submit' value='submit' class='submitButton'>
             </form>
-            <button>submit</button>
+            
         </div>
 
     </div>
